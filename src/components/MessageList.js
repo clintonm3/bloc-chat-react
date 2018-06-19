@@ -61,12 +61,11 @@ sendMessage = (e) => {
     alert('Select a room before entering message!');
   }
 
-  this.setState({ message: ""});
+  this.setState({ message: "" });
 }
 
 handleChange = (e) => {
-  e.preventDefault;
-  this.setState({message: e.target.value});
+  this.setState({ message: e.target.value });
 }
 
 
@@ -100,7 +99,7 @@ render() {
           }
         </div>
         <div id="new-message">
-          <input id="message-input" type="text" placeholder="Enter message here" value={this.state.message} onChange={(e) => this.handleChange(e)}></input>
+          <input id="message-input" type="text" placeholder="Enter message here..." value={this.state.message} onChange={(e) => this.handleChange(e)}></input>
           <button type="submit" onClick={(e) => this.sendMessage(e)}>Send</button>
         </div>
       </section>

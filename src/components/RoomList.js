@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class RoomList extends Component {
-  constructor (props) {
+  constructor(props) {
   super(props);
 
   this.state = {rooms: [], name: ''};
@@ -30,6 +30,13 @@ componentDidMount() {
      this.setState({ name: "" });
    }
 
+   removeRoom(room) {
+    console.log(room.creator);
+    console.log(this.props.user.email);
+    if(room.creator !== this.props.user.email ) { return }
+    this.roomsRef.child(room.key).remove();
+  }
+
    render() {
      return (
        <section id="rooms">
@@ -42,8 +49,9 @@ componentDidMount() {
            <div>
            <form onSubmit={(e) => this.createRoom(e)} id="room-form">
               <label id="room-label" htmlFor="create-room">Create New Room</label>
-              <input id="room-input" type="text" name="create-room" ref="room-input" placeholder="Enter Room Name" value={this.state.name} onChange={(e) => this.handleChange(e)}></input>
+              <input id="room-input" type="text" name="create-room" ref="room-input" placeholder="Enter room name..." value={this.state.name} onChange={(e) => this.handleChange(e)}></input>
               <button id="submit-button" type="submit" form="room-form">Create</button>
+              <button id="delete-button" type="delete" form="room-form">Delete</button>
            </form>
         </div>
       </section>
